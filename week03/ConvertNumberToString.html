@@ -1,0 +1,37 @@
+<script>
+
+// 支持10进制的数字 转成 35进制以内的数字形式字符串
+function convertNumber2String(number, radix) {
+  let str = "";
+  let remainNumber = 0;
+  let ret = number;
+
+  while (ret > 0) {
+    
+    remainNumber = ret % radix;
+    ret = Math.floor(ret / radix);
+    str = convertNumber2Char(remainNumber) + str;
+    
+  }
+
+  return str;
+}
+
+//  0-9 to '0-9'; 10-35 to 'A-Z'; 
+function convertNumber2Char(number) {
+
+  if (number < 0 || number > 35) {
+    console.error("input number is illegal");
+    return;
+  }
+
+  if (number >= 0 && number <= 9) {
+    return String.fromCharCode(48 + number);
+  }
+
+  if (number >= 10 && number <= 35) {
+    return String.fromCharCode(55 + number);
+  }
+}
+
+</script>

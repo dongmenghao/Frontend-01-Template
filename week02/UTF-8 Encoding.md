@@ -3,6 +3,8 @@
 UTF-8（UTF8-bit Unicodve Transformation Format）是一种针对Unicode的可变长度字符编码，也是一种前缀码。
 它可以用来表示Unicode标准中的任何字符，且其编码中的第一个字节仍与ASCII兼容，这使得原来处理ASCII字符的软件无须或只须做少部分修改，即可继续使用。因此，它逐渐成为电子邮件、网页及其他存储或发送文字的应用中，优先采用的编码。
 
+链接：https://www.cnblogs.com/doublenet/p/5616451.html
+
 参考阮一峰老师的文章 [字符编码笔记：ASCII，Unicode 和 UTF-8](http://www.ruanyifeng.com/blog/2007/10/ascii_unicode_and_utf-8.html) 中对UTF-8编码的介绍
 >UTF-8 是 Unicode 的实现方式之一。
   UTF-8 最大的一个特点，就是它是一种变长的编码方式。它可以使用1~4个字节表示一个符号，根据不同的符号而变化字节长度。

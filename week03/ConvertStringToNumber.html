@@ -1,0 +1,62 @@
+<script>
+
+//支持35进制以内的数字构成的字符串 转成 10进制数字
+function convertString2Number(str, radix) {
+    let chars = str.split('');
+    let number = 0;
+    let i = 0;
+    let diff = 0;
+    
+    while(i < chars.length && chars[i] !== '.') {
+      number = number * radix;
+      diff = convertChar2Number(chars[i]);
+      if (diff !== null && diff < radix) {
+        number += diff;
+        i++;
+      } else {
+        console.error('input string is not match the input radix number');
+        return;
+      }
+      
+    }
+
+    if (chars[i] === '.') {
+      i++;
+    }
+
+    let fraction = 1;
+    while(i < chars.length) {
+      diff = convertChar2Number(chars[i]);
+      if (diff !== null && diff < radix) {
+        fraction /= radix;
+        number += diff * fraction;
+        i++;
+      } else {
+        console.error('input string is not match the input radix number');
+        return;
+      }
+    }
+    return number;
+  }
+
+  // '0-9' to 0-9 ; 'A-Z' to 10-35; 'a-z' to 10-35 
+  function convertChar2Number(char) {
+
+    if (char.match(/^[0-9]$/)) {
+      return char.codePointAt(0) - '0'.codePointAt(0);
+    }
+
+    if (char.match(/^[A-Z]$/)) {
+      return char.codePointAt(0) - '0'.codePointAt(0) - 7;
+    }
+
+    if (char.match(/^[a-z]$/)) {
+      return char.codePointAt(0) - '0'.codePointAt(0) - 39;
+    } 
+
+    console.error('input char is illegal');
+    return null;
+  }
+
+
+</script>
