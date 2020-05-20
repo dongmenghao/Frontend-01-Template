@@ -72,3 +72,5 @@ HTTP/1.1协议中预留给能够将连接改为管道方式的代理服务器。
 * 通用首部字段
 * 实体首部字段
 * 其他
+
+参考总结: https://github.com/Ele-Peng/Frontend-01-Template/blob/master/week05/ToyBrowser.md
