@@ -1,6 +1,7 @@
 const css = require('css');
 const EOF = Symbol("EOF"); // End Of File
 const layout = require('./layout');
+const match = require('../match');
 
 let currentToken = null;
 let currentAttribute = null;
@@ -13,25 +14,6 @@ function addCSSRules(text) {
   //console.log(JSON.stringify(ast, null, "   "));
   rules.push(...ast.stylesheet.rules);
   //console.log("addCSSRules", rules);
-}
-
-function match(element, selector) {
-
-  if (!selector || !element.attributes)
-    return false;
-  
-  if (selector.charAt(0) == "#") {
-    var attr = element.attributes.filter(attr => attr.name === "id")[0];
-    if (attr && attr.value === selector.replace("#", ''))
-      return true;
-  } else if (selector.charAt(0) === ".") {
-    var attr = element.attributes.filter(attr => attr.name === "class")[0];
-    if (attr && attr.value === selector.replace(".", ''))
-      return true;
-  } else { 
-    if (element.tagName === selector)
-      return true;
-  }
 }
 
 function specificity(selector) { 
@@ -112,7 +94,8 @@ function emit(token) {
     let element = {
       type: "element",
       children: [],
-      attributes: []
+      attributes: [],
+      parent: null
     }
 
     element.tagName = token.tagName;
@@ -126,9 +109,9 @@ function emit(token) {
       }
     }
 
-    computeCSS(element);
-
     top.children.push(element);
+    element.parent = top;
+    computeCSS(element);
 
     if (!token.isSelfClosing)
       stack.push(element);
