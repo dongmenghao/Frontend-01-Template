@@ -12,3 +12,6 @@ for (let li of lis) {
 }
 
 console.log(result);
+// 爬取的页面 url: 
+// 格式化打印
+console.log(JSON.stringify(reuslt, null, "    "))
