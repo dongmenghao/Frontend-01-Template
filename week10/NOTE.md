@@ -47,3 +47,6 @@
 * window.scrollBy(0, 50) // 滚动的幅度，向下滚动 50
 * 元素也可以滚动，不过 api 和 window 不太一样，scrollBy, scrollTo, scrollTop, scrollLeft, scrollHeight
 * document.documentElement.getBoundingClientRect()
+  
+### 资源 
+  canvas实现五子棋: https://hounaoshao.github.io/

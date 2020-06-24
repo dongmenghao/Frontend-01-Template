@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    div {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      float: left;
+      margin: 5px;
+      background-color: #aaa;
+    }
+    .red.light {
+      background-color: red;
+    }
+    .green.light {
+      background-color: green;
+    }
+    .yellow.light {
+      background-color: yellow;
+    }
+    
+  </style>
+</head>
+<body>
+  
+    <div class="red"></div>
+    <div class="green"></div>
+    <div class="yellow"></div>
+  
+  <script>
+    function delay(func, delay) {
+      setTimeout(() => {
+        func()
+      },delay)
+    }
+    var lights = document.getElementsByTagName('div')
+    function red() {
+      for (let i = 0; i < 3; i++) {
+        lights[i].classList.remove('light')
+      }
+      lights[0].classList.add('light')
+    }
+    function green() {
+      for (let i = 0; i < 3; i++) {
+        lights[i].classList.remove('light')
+      }
+      lights[1].classList.add('light')
+    }
+    function yellow() {
+      for (let i = 0; i < 3; i++) {
+        lights[i].classList.remove('light')
+      }
+      lights[2].classList.add('light')
+    }
+    function go() {
+      green()
+      setTimeout(function() {
+        yellow()
+        setTimeout(() => {
+          red()
+          setTimeout(() => {
+            go()
+          }, 500)
+        },200)
+      }, 1000)
+    }
+    function sleep(t) {
+      return new Promise((resolve,reject) => {
+        setTimeout(resolve, t)
+      })
+    }
+    async function goBySleepFunc() {
+      while(true) {
+        green()
+        await sleep(1000)
+        yellow()
+        await sleep(1000)
+        red()
+        await sleep(2000)
+      }
+    }
+    
+    //go()
+  </script>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<html>
+<head>
+</head>
+<body>
+  <pre id="container">1</pre>
+<script>
+  var source = `
+  function sleep(t) {
+    return new Promise((resolve, reject) => {
+      setTimeout(resolve, t);
+    })
+  }
+`
+  var regexp = /(function|new|return)|([ \t\n\r]+)|([a-zA-Z0-9]*)|([\(\)\{\}\,\;])/g
+  var dictionary = ["keywords", "whitespace", "identifier", "punctuator"];
+  var token = null;
+  var lastIndex = 0;
+
+  var container = document.getElementById("container");
+  console.log(1)
+  do{
+    lastIndex = regexp.lastIndex;
+    console.log(2)
+    token = regexp.exec(source);
+    console.log(3)
+    if (!token) break;
+    let text = document.createElement("span");
+    text.textContent = token[0];
+    console.log(4)
+    for (var i = 1; i < 5; i++) {
+      if (token[i]) {
+        console.log(dictionary[i-1])
+        text.classList.add(dictionary[i-1]);
+      }
+    }
+    console.log(5)
+    container.appendChild(text);
+  } while(!token);
+</script>
+</body>
+</html>
