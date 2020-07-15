@@ -73,7 +73,7 @@
         setTimeout(resolve, t)
       })
     }
-    async function goBySleepFunc() {
+    async function goBySleepAsync() {
       while(true) {
         green()
         await sleep(1000)
@@ -82,6 +82,19 @@
         red()
         await sleep(2000)
       }
+    }
+
+    function goBySleepThen(){
+      green();
+      sleep(1000).then(() => {
+        yellow();
+        return sleep(1000);
+      }).then(() => {
+        red();
+        return sleep(2000);
+      }).then(() => {
+        goBySleepThen();
+      })
     }
     
     //go()
